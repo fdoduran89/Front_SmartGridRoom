@@ -1,0 +1,558 @@
+/* Reset y estilos base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Lexend", sans-serif;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ========== BARRA DE NAVEGACIÓN ========== */
+.navbar {
+  background-color: #212529 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  padding: 12px 0;
+}
+
+.navbar-brand {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white !important;
+}
+
+/* Botón hamburguesa - SIEMPRE visible a la izquierda */
+.navbar-toggler {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  padding: 8px;
+  order: 0;
+}
+
+.navbar-toggler:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Contenedor principal con flex para sidebar */
+.contenedor-principal {
+  display: flex;
+  min-height: calc(100vh - 70px);
+  position: relative;
+}
+
+/* ========== MENÚ LATERAL (SIDEBAR) ========== */
+.menu-lateral {
+  position: fixed;
+  top: 70px;
+  left: 0;
+  width: 280px;
+  height: calc(100vh - 70px);
+  background-color: #212529;
+  z-index: 1040;
+  transition: left 0.3s ease;
+  padding: 20px;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+/* Estado abierto en desktop (sidebar visible) */
+.menu-lateral.desktop.abierto {
+  left: 0;
+}
+
+/* Estado cerrado en desktop (sidebar oculto) */
+.menu-lateral.desktop.cerrado {
+  left: -280px;
+}
+
+/* Estado en móvil - siempre usa left para mostrar/ocultar */
+.menu-lateral.movil {
+  left: -280px;
+}
+
+.menu-lateral.movil.abierto {
+  left: 0;
+}
+
+.menu-lateral.movil.cerrado {
+  left: -280px;
+}
+
+/* Header del menú */
+.menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #3a3f45;
+}
+
+.menu-header .brand {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+}
+
+.menu-header .close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+.menu-header .close-btn:hover {
+  background-color: #3a3f45;
+}
+
+/* Lista de navegación */
+.nav-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-lista .nav-item {
+  width: 100%;
+  list-style: none;
+}
+
+.nav-lista .nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: #e2e8f0;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.nav-lista .nav-link:hover {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.nav-lista .nav-link.active {
+  background-color: #3b82f6;
+  color: white;
+}
+
+/* Overlay (fondo oscuro) - solo visible en móvil */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1035;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+/* ========== CONTENIDO PRINCIPAL ========== */
+.contenido-principal {
+  flex: 1;
+  transition: margin-left 0.3s ease;
+  width: 100%;
+}
+
+/* Cuando el menú está abierto en desktop, el contenido se desplaza */
+.contenido-principal.con-menu {
+  margin-left: 280px;
+  width: calc(100% - 280px);
+}
+
+/* Cuando el menú está cerrado en desktop, el contenido ocupa todo */
+.contenido-principal.sin-menu {
+  margin-left: 0;
+  width: 100%;
+}
+
+/* En móvil, el contenido siempre ocupa todo */
+@media (max-width: 767px) {
+  .contenido-principal {
+    margin-left: 0 !important;
+    width: 100% !important;
+  }
+}
+
+/* ========== RESPONSIVE ========== */
+/* Pantallas medianas y grandes (>=768px) */
+@media (min-width: 768px) {
+  .menu-overlay {
+    display: none;
+  }
+}
+
+/* Pantallas pequeñas (<768px) */
+@media (max-width: 767px) {
+  .menu-lateral.desktop {
+    display: block;
+  }
+
+  .navbar-brand {
+    font-size: 1.1rem;
+  }
+}
+
+/* ========== RESTO DE ESTILOS (sin cambios) ========== */
+
+/* Hero Mockup */
+.mockup {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+/* Badge Custom */
+.badge-custom {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: #3b82f6;
+  color: white;
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Chart */
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.chart .bar {
+  width: 30px;
+  background: #cbd5e1;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  min-height: 20px;
+}
+
+@media (max-width: 768px) {
+  .chart .bar {
+    width: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .chart .bar {
+    width: 15px;
+  }
+}
+
+.chart .bar.active {
+  background: #3b82f6;
+}
+
+/* Switch */
+.switch {
+  width: 50px;
+  height: 26px;
+  background: #cbd5e1;
+  border-radius: 999px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.switch.on {
+  background: #3b82f6;
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 3px;
+  transition: all 0.3s ease;
+}
+
+.switch.on::after {
+  left: 25px;
+}
+
+/* Benefit Cards */
+.benefit-card {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.5s ease;
+  padding: 30px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.benefit-card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Security Section */
+.security-section {
+  background: #0f172a;
+  color: white;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.security-box {
+  height: 300px;
+  background: linear-gradient(135deg, #1e3b8a, #3b82f6);
+  border-radius: 20px;
+}
+
+/* Calendar */
+.calendar-week,
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+}
+
+.calendar-days div {
+  padding: 12px;
+  border: 1px solid #e2e8f0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+@media (max-width: 768px) {
+  .calendar-days div {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 576px) {
+  .calendar-days div {
+    padding: 6px;
+    font-size: 10px;
+  }
+}
+
+.calendar-days div:hover {
+  background: #3b82f6;
+  color: white;
+}
+
+.calendar-days div.has-booking {
+  background: #3b82f6;
+  color: white;
+}
+
+/* Tablas - Responsive */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-crud {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table-crud th {
+  background: #f8f9fa;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* Estados */
+.status-active {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.status-inactive {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* Cards responsivas */
+@media (max-width: 768px) {
+  .card .card-header h5,
+  .card .card-header h6 {
+    font-size: 14px;
+  }
+
+  .card-body {
+    padding: 16px;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  h1.display-4 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .badge-custom {
+    padding: 8px 12px;
+  }
+
+  .badge-custom h5 {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  .badge-custom p {
+    font-size: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  h1.display-4 {
+    font-size: 1.75rem;
+  }
+
+  .btn-lg {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .benefit-card {
+    padding: 20px;
+  }
+
+  .security-box {
+    height: 200px;
+  }
+
+  .switch {
+    width: 40px;
+    height: 22px;
+  }
+
+  .switch::after {
+    width: 18px;
+    height: 18px;
+  }
+
+  .switch.on::after {
+    left: 18px;
+  }
+
+  .menu-lateral {
+    width: 85%;
+    max-width: 280px;
+  }
+
+  .contenido-principal.con-menu {
+    margin-left: 0;
+  }
+}
+
+/* Cards */
+.card {
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Botones */
+.btn {
+  border-radius: 10px;
+  padding: 10px 24px;
+  font-weight: 500;
+}
+
+.btn-lg {
+  padding: 12px 32px;
+}
+
+/* Contenedores */
+.container {
+  max-width: 1400px;
+}
+
+/* Secciones */
+section {
+  margin-bottom: 20px;
+}
+
+/* Badges */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* Utilidades */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ajustes para el contenido */
+.container.mt-4 {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
